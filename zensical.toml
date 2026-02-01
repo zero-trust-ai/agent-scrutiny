@@ -1,0 +1,159 @@
+[project]
+site_name = "Agent Scrutiny"
+site_url  = "https://agent-scrutiny.github.io/"
+site_description = "Zero-trust security for AI agents. Never trust. Always verify."
+site_author = "Zero-Trust AI Contributors"
+
+# ---------------------------------------------------------------------------
+# Theme
+# ---------------------------------------------------------------------------
+[project.theme]
+name = "material"
+custom_dir = "overrides"
+language = "en"
+features = [
+  "navigation.tabs",
+  "navigation.sections",
+  "navigation.expand",
+  "navigation.top",
+  "search.highlight",
+  "search.suggest",
+  "content.tabs.link",
+  "content.code.copy",
+  "content.code.select",
+]
+
+[[project.theme.palette]]
+media  = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "deep purple"
+accent  = "cyan"
+toggle  = { icon = "material/brightness-4", name = "Switch to dark mode" }
+
+[[project.theme.palette]]
+media  = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "deep purple"
+accent  = "cyan"
+toggle  = { icon = "material/brightness-7", name = "Switch to light mode" }
+
+# ---------------------------------------------------------------------------
+# Navigation
+# ---------------------------------------------------------------------------
+[[project.nav]]
+"Home" = "index.md"
+
+[[project.nav]]
+"Getting Started" = "getting-started.md"
+
+[[project.nav]]
+"Architecture" = "architecture.md"
+
+[[project.nav]]
+"Threat Model" = "threat-model.md"
+
+[[project.nav]]
+"Zero-Trust Principles" = "zero-trust-principles.md"
+
+[[project.nav]]
+"Roadmap" = "roadmap.md"
+
+# --- Concepts ---------------------------------------------------------------
+[[project.nav]]
+[project.nav."Concepts"]
+"Overview"                 = "concepts/index.md"
+"Prompt Injection"         = "concepts/prompt-injection.md"
+"MCP Security"             = "concepts/mcp-security.md"
+"RAG-Powered Policies"     = "concepts/rag-policies.md"
+"Multi-Agent Security"     = "concepts/multi-agent-security.md"
+
+# --- Python SDK -------------------------------------------------------------
+[[project.nav]]
+[project.nav."Python SDK"]
+"Overview"                 = "python/index.md"
+"Installation"             = "python/installation.md"
+"API Reference"            = "python/api-reference.md"
+"Tutorials"                = "python/tutorials/index.md"
+"Tutorial: Basic Usage"    = "python/tutorials/basic-usage.md"
+"Tutorial: Plugin Dev"     = "python/tutorials/plugin-development.md"
+
+# --- Rust SDK ---------------------------------------------------------------
+[[project.nav]]
+[project.nav."Rust SDK"]
+"Overview"                 = "rust/index.md"
+"Installation"             = "rust/installation.md"
+"API Reference"            = "rust/api-reference.md"
+
+# --- Plugins ----------------------------------------------------------------
+[[project.nav]]
+[project.nav."Plugins"]
+"Plugin Ecosystem"         = "plugins/index.md"
+"Plugin Specification"     = "plugins/plugin-specification.md"
+"Creating a Plugin"        = "plugins/creating-plugins.md"
+"Official Plugins"         = "plugins/official/index.md"
+
+# --- Contributing -----------------------------------------------------------
+[[project.nav]]
+"Contributing" = "contributing.md"
+
+# ---------------------------------------------------------------------------
+# Markdown extensions
+# ---------------------------------------------------------------------------
+[project.markdown]
+extensions = [
+  "admonition",
+  "attr_list",
+  "def_list",
+  "details",
+  "md_in_html",
+  "tables",
+  "toc",
+  "pymdownx.blocks.admonition",
+  "pymdownx.blocks.details",
+  "pymdownx.blocks.tab",
+  "pymdownx.emoji",
+  "pymdownx.highlight",
+  "pymdownx.inlinehilite",
+  "pymdownx.superfences",
+  "pymdownx.tabbed",
+  "pymdownx.tasklist",
+]
+
+[project.markdown.extensions.toc]
+permalink = true
+
+[project.markdown.extensions.pymdownx.highlight]
+anchor_linenums = true
+line_range = true
+content_copy = true
+
+[project.markdown.extensions.pymdownx.tabbed]
+alternate = true
+
+[project.markdown.extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+
+# ---------------------------------------------------------------------------
+# Extra / Footer links
+# ---------------------------------------------------------------------------
+[project.extra]
+homepage     = "https://zero-trust.ai"
+github       = "zero-trust-ai/agent-scrutiny"
+twitter      = "zero_trust_ai"
+
+[[project.extra.links]]
+icon = "material/github"
+name = "GitHub Org"
+url  = "https://github.com/zero-trust-ai"
+
+[[project.extra.links]]
+icon = "material/linkedin"
+name = "LinkedIn"
+url  = "https://linkedin.com/company/zero-trust-ai"
+
+[[project.extra.links]]
+icon = "material/globe"
+name = "Website"
+url  = "https://zero-trust.ai"
