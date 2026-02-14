@@ -1,177 +1,199 @@
-# API Reference — Python SDK
+# API Reference — Rust SDK
 
-> **Status:** Stage 0 — This page documents the *planned* API. Classes and methods listed here will be implemented in the stages indicated.
-
----
-
-## `agent_scrutiny` — Top-Level Package
-
-### Current Exports
-
-```python
-from agent_scrutiny import __version__   # "0.1.0-dev"
-```
-
-### Stage 1 Exports
-
-```python
-from agent_scrutiny import Scrutinizer
-from agent_scrutiny import SecurityVerdict
-from agent_scrutiny import SecurityPolicy
-```
+> **Status:** Stage 0 — This page documents the *planned* API. Trait definitions and struct layouts will be finalized when Stage 1 implementation begins.
 
 ---
 
-## `Scrutinizer` *(Stage 1)*
+## `scrutiny-core` — Scrutinizer Engine
 
-The central security evaluation engine.
+### `Scrutinizer`
 
-```python
-class Scrutinizer:
-    def __init__(
-        self,
-        policies: list[str | SecurityPolicy] = None,
-        custom_policies: list[dict] = None,
-        mode: Literal["strict", "permissive"] = "strict",
-        log_level: str = "INFO",
-        policy_engine: PolicyEngine | None = None,   # Stage 3: RAG engine
-    ) -> None: ...
+The central evaluation engine. Thread-safe and designed for concurrent use.
 
-    def evaluate(
-        self,
-        agent_input: str,
-        agent_output: str,
-        context: dict[str, Any] | None = None,
-    ) -> SecurityVerdict: ...
+```rust
+use scrutiny_core::{Scrutinizer, ScrutinizerConfig, SecurityVerdict};
 
-    def load_plugin(self, plugin: SecurityPlugin) -> None: ...
+// Create a Scrutinizer
+let config = ScrutinizerConfig {
+    policies: vec!["prompt-injection".into(), "data-exfiltration".into()],
+    mode: Mode::Strict,
+    log_level: LogLevel::Info,
+    ..Default::default()
+};
 
-    def unload_plugin(self, plugin_name: str) -> None: ...
+let scrutinizer = Scrutinizer::new(config)?;
 
-    def list_plugins(self) -> list[PluginInfo]: ...
+// Evaluate an interaction
+let verdict = scrutinizer.evaluate(EvaluationRequest {
+    agent_input:  "What is the weather?".into(),
+    agent_output: "I don't have real-time data.".into(),
+    context:      Some(context_map),
+})?;
+
+// Async variant
+let verdict = scrutinizer.evaluate_async(request).await?;
 ```
 
-#### Parameters — `__init__`
+### `SecurityVerdict`
 
-| Parameter | Type | Description |
-|---|---|---|
-| `policies` | `list` | Built-in policy names (e.g., `"prompt-injection"`) or `SecurityPolicy` objects |
-| `custom_policies` | `list[dict]` | Inline policy definitions with pattern and threat mappings |
-| `mode` | `str` | `"strict"` blocks on any threat signal; `"permissive"` logs but allows |
-| `log_level` | `str` | Standard Python log levels |
-| `policy_engine` | `PolicyEngine` | Stage 3: swap in a RAG-backed policy engine |
+```rust
+pub struct SecurityVerdict {
+    pub is_safe:            bool,
+    pub risk_score:         f64,                    // 0.0 – 1.0
+    pub threat_type:        Option<String>,
+    pub threat_types:       Vec<String>,
+    pub threats_detected:   usize,
+    pub explanation:        String,
+    pub matched_patterns:   Vec<String>,
+    pub violated_policies:  Vec<String>,
+    pub plugin_details:     HashMap<String, serde_json::Value>,
+    pub recommendation:     Option<String>,
+}
+```
 
-#### Parameters — `evaluate`
+### `ScrutinizerConfig`
 
-| Parameter | Type | Description |
-|---|---|---|
-| `agent_input` | `str` | The message or data sent to the agent |
-| `agent_output` | `str` | The agent's response |
-| `context` | `dict` | Metadata: `agent_id`, `user_id`, interaction type, etc. |
+```rust
+pub struct ScrutinizerConfig {
+    pub policies:        Vec<String>,
+    pub custom_policies: Vec<PolicyDefinition>,
+    pub mode:            Mode,
+    pub log_level:       LogLevel,
+}
 
----
-
-## `SecurityVerdict` *(Stage 1)*
-
-The return type of `Scrutinizer.evaluate()`. Contains everything needed to act on and explain the security decision.
-
-```python
-class SecurityVerdict:
-    is_safe: bool
-    risk_score: float                    # 0.0 (no risk) to 1.0 (critical)
-    threat_type: str | None              # e.g., "prompt_injection"
-    threat_types: list[str]              # all detected threats
-    threats_detected: int
-    explanation: str                     # human-readable reasoning
-    matched_patterns: list[str]          # which detection patterns fired
-    violated_policies: list[str]         # which policies were violated
-    plugin_details: dict[str, Any]       # per-plugin verdict details (Stage 2)
-    recommendation: str | None           # what to do next
+pub enum Mode {
+    Strict,       // Block on any threat signal
+    Permissive,   // Log but allow
+}
 ```
 
 ---
 
-## `SecurityPlugin` *(Stage 1–2)*
+## `scrutiny-plugins` — Plugin System
 
-The abstract base class that all plugins implement. See [Plugin Specification](../plugins/plugin-specification.md) for the full contract.
+### `SecurityPlugin` Trait
 
-```python
-class SecurityPlugin(ABC):
-    @property
-    @abstractmethod
-    def name(self) -> str: ...
+Every plugin implements this trait. It mirrors the Python `SecurityPlugin` abstract base class exactly.
 
-    @property
-    @abstractmethod
-    def version(self) -> str: ...
+```rust
+use scrutiny_plugins::{SecurityPlugin, PluginVerdict};
 
-    @property
-    @abstractmethod
-    def description(self) -> str: ...
+pub trait SecurityPlugin: Send + Sync {
+    /// Unique plugin identifier (kebab-case).
+    fn name(&self) -> &str;
 
-    def required_context(self) -> list[str]: ...
+    /// Semantic version string.
+    fn version(&self) -> &str;
 
-    def initialize(self, config: dict[str, Any]) -> None: ...
+    /// One-sentence summary.
+    fn description(&self) -> &str;
 
-    @abstractmethod
-    def evaluate(
-        self,
-        agent_input: str,
-        agent_output: str,
-        context: dict[str, Any],
-    ) -> PluginVerdict: ...
+    /// Context keys this plugin requires.
+    fn required_context(&self) -> Vec<&str> {
+        vec![]
+    }
 
-    def shutdown(self) -> None: ...
+    /// Called once when the plugin is loaded.
+    fn initialize(&mut self, config: &serde_json::Value) -> Result<(), Box<dyn std::error::Error>> {
+        Ok(())
+    }
+
+    /// Core detection logic. Called for every interaction.
+    fn evaluate(
+        &self,
+        agent_input:  &str,
+        agent_output: &str,
+        context:      &HashMap<String, serde_json::Value>,
+    ) -> PluginVerdict;
+
+    /// Called when the plugin is unloaded.
+    fn shutdown(&mut self) {}
+}
+```
+
+### `PluginVerdict`
+
+```rust
+pub struct PluginVerdict {
+    pub is_safe:    bool,
+    pub reason:     String,
+    pub risk_score: f64,    // 0.0 – 1.0; 0.0 if is_safe == true
+}
+```
+
+### Plugin Registration
+
+```rust
+use scrutiny_core::Scrutinizer;
+use my_plugin::MyPlugin;
+
+let mut scrutinizer = Scrutinizer::new(config)?;
+
+scrutinizer.load_plugin(
+    Box::new(MyPlugin::new()),
+    &serde_json::json!({
+        "value_limits": { "eth": 1.0 }
+    }),
+)?;
 ```
 
 ---
 
-## `MCPScrutinizer` *(Stage 2)*
+## `scrutiny-detectors` — Core Detectors
 
-Security layer for Model Context Protocol communications.
+Detectors are not plugins — they are built into the core evaluation pipeline. They are exposed here for configuration purposes.
 
-```python
-class MCPScrutinizer:
-    def __init__(self, trust_policy: TrustPolicy | None = None) -> None: ...
+```rust
+use scrutiny_detectors::DetectorConfig;
 
-    def validate_message(self, message: dict[str, Any]) -> MCPValidationResult: ...
-
-    def register_agent(self, agent_id: str, credentials: AgentCredentials) -> None: ...
-
-    def authorize(self, sender: str, receiver: str, action: str) -> bool: ...
+let detector_config = DetectorConfig {
+    prompt_injection: PromptInjectionConfig {
+        pattern_library: PatternLibrary::Default,
+        sensitivity: Sensitivity::High,
+    },
+    input_validator: InputValidatorConfig {
+        max_input_length: 10_000,
+        allowed_encodings: vec!["utf-8".into()],
+    },
+    data_exfiltration: DataExfiltrationConfig {
+        scan_output: true,
+        custom_patterns: vec![],
+    },
+};
 ```
 
 ---
 
-## `RAGPolicyEngine` *(Stage 3)*
+## `scrutiny-mcp` — MCP Security *(Stage 2)*
 
-Drop-in replacement for the static policy engine. Retrieves policies dynamically from a vector knowledge base.
+```rust
+use scrutiny_mcp::{MCPScrutinizer, Message, ValidationResult};
 
-```python
-class RAGPolicyEngine:
-    def __init__(
-        self,
-        vector_store: str = "chromadb",     # or "pinecone", "pgvector"
-        update_interval: int = 3600,         # seconds between knowledge base checks
-    ) -> None: ...
+let mcp = MCPScrutinizer::new(trust_policy)?;
 
-    def get_policies_for_context(self, context: dict[str, Any]) -> list[Policy]: ...
+let result: ValidationResult = mcp.validate_message(&message)?;
 
-    def explain_decision(self, verdict: SecurityVerdict) -> str: ...
+match result {
+    ValidationResult::Valid => { /* process */ }
+    ValidationResult::Invalid { reason } => { /* log and drop */ }
+}
 ```
 
 ---
 
-## Async Variants
+## Error Handling
 
-All evaluation methods have async counterparts for use in asyncio applications:
+The Rust SDK uses the standard `Result<T, E>` pattern. All fallible operations return typed errors:
 
-```python
-verdict = await scrutinizer.evaluate_async(
-    agent_input="...",
-    agent_output="...",
-    context={...},
-)
+```rust
+use scrutiny_core::error::ScrutinyError;
+
+pub enum ScrutinyError {
+    InvalidInput(String),
+    PolicyNotFound(String),
+    PluginError { plugin: String, source: Box<dyn std::error::Error> },
+    ConfigurationError(String),
+}
 ```
 
-Async variants are available starting Stage 1.
+All error variants implement `Display` and `std::error::Error`, and are compatible with the `?` operator and `anyhow`.
