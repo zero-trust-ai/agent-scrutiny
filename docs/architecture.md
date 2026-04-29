@@ -23,13 +23,13 @@ Every architectural decision traces back to one of these:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                        Agent Interaction                        │
-│          (user → agent, agent → agent, agent → API)            │
+│                        Agent Interaction                     │
+│          (user → agent, agent → agent, agent → API)          │
 └────────────────────────────┬─────────────────────────────────┘
                              │
                              ▼
-┌──────────────────────────────────────────────────────────────┐
-│                   Scrutinizer Evaluation Layer                  │
+┌────────────────────────────────────────────────────────────────┐
+│                   Scrutinizer Evaluation Layer                 │
 │                                                                │
 │   ┌────────────────┐                                           │
 │   │ Input          │  *(Stage 1)*  Sanitize & validate         │
@@ -43,9 +43,9 @@ Every architectural decision traces back to one of these:
 │           ▼                                                    │
 │   ┌────────────────────────────────────┐                       │
 │   │ Plugin Evaluation Pipeline         │  *(Stage 1–2)*        │
-│   │  ┌─────────┐ ┌─────────┐ ┌──────┐ │  Each plugin runs     │
-│   │  │Plugin A │ │Plugin B │ │ ...  │ │  in its own isolated  │
-│   │  └─────────┘ └─────────┘ └──────┘ │  security boundary.   │
+│   │  ┌─────────┐ ┌─────────┐ ┌──────┐  │  Each plugin runs     │
+│   │  │Plugin A │ │Plugin B │ │ ...  │  │  in its own isolated  │
+│   │  └─────────┘ └─────────┘ └──────┘  │  security boundary.   │
 │   └───────┬────────────────────────────┘                       │
 │           ▼                                                    │
 │   ┌────────────────┐                                           │
