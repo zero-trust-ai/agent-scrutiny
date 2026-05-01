@@ -58,6 +58,15 @@ toggle  = { icon = "material/brightness-7", name = "Switch to light mode" }
 [[project.nav]]
 "Roadmap" = "roadmap.md"
 
+[[project.nav]]
+"Security Use Cases" = "security-use-cases.md"
+
+[[project.nav]]
+"Contributing" = "contributing.md"
+
+[[project.nav]]
+"Git Branching" = "git-branching.md"
+
 # --- Concepts ---------------------------------------------------------------
 [[project.nav]]
 [project.nav."Concepts"]
