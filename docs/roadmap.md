@@ -28,10 +28,11 @@ Agent Scrutiny follows a staged development methodology. Each stage introduces n
 - [x] Repository structure (hub, python, rust)
 - [x] Mission statement and core principles
 - [x] Plugin architecture design and specification
-- [ ] Threat model (in progress — see [Threat Model](threat-model.md))
-- [ ] System architecture documentation (in progress — see [Architecture](architecture.md))
-- [ ] Zero-trust principles for AI (in progress — see [Zero-Trust Principles](zero-trust-principles.md))
-- [ ] Community guidelines and contribution docs
+- [x] Comprehensive threat model for AI agents
+- [x] System architecture documentation
+- [x] Zero-trust principles applied to AI
+- [x] Security use cases and scenarios
+- [x] Community guidelines and contribution docs
 
 ### Success Criteria
 
