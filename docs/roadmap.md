@@ -10,12 +10,12 @@ Agent Scrutiny follows a staged development methodology. Each stage introduces n
 
 | Stage | Focus | Target | Status |
 |---|---|---|---|
-| **0** | Foundation — threat modeling, architecture, plugin spec | Q1 2025 | **Complete** |
-| **1** | Scrutinizer Core — detectors, policies, plugin foundation | Q1–Q2 2025 | Planned |
-| **2** | MCP Security & full plugin ecosystem | Q2 2025 | Planned |
-| **3** | RAG-powered dynamic policies | Q2–Q3 2025 | Planned |
-| **4** | Multi-agent security & behavioral analysis | Q3 2025 | Planned |
-| **5** | Production hardening & enterprise deployment | Q4 2025 | Planned |
+| **0** | Foundation — threat modeling, architecture, plugin spec | Q1 2026 | **Complete** |
+| **1** | Scrutinizer Core — detectors, policies, plugin foundation | Q1–Q2 2026 | Complete |
+| **2** | MCP Security & full plugin ecosystem | Q2 2026 | Planned |
+| **3** | RAG-powered dynamic policies | Q2–Q3 2026 | Planned |
+| **4** | Multi-agent security & behavioral analysis | Q3 2026 | Planned |
+| **5** | Production hardening & enterprise deployment | Q4 2026 | Planned |
 
 ---
 
