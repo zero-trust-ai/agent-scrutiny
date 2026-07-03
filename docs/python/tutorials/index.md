@@ -1,6 +1,6 @@
 # Tutorials
 
-> **Status:** These tutorials document the *planned* API and usage patterns. Code examples will become runnable when Stage 1 implementation is complete.
+> **Status:** Current for the Stage 1 SDK. Every code example runs against the released API.
 
 Tutorials are hands-on, step-by-step guides. Each one builds a complete, working example.
 

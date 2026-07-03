@@ -38,4 +38,4 @@ Both SDKs implement the same [Plugin Specification](plugins/plugin-specification
 
 ## Current Status
 
-The project is in **Stage 0 — Foundation**. Documentation, threat modeling, and architectural design are the current focus. Core implementation begins in Stage 1. See the [Roadmap](roadmap.md) for the full staged plan.
+**Stage 1 is complete in the Python SDK.** The Scrutinizer evaluation pipeline, the built-in detectors (prompt injection, input validation, data exfiltration), the policy engine, and the plugin system are all implemented and tested — and the documentation here describes that shipped surface. The Rust SDK remains in earlier stages. **Stage 2** — MCP security and the full plugin ecosystem — is the next focus. See the [Roadmap](roadmap.md) for the full staged plan.

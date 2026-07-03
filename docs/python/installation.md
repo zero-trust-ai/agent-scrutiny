@@ -1,5 +1,7 @@
 # Installation — Python SDK
 
+The Python SDK implements the full Stage 1 pipeline — the Scrutinizer, the built-in detectors, the policy engine, and the plugin system. This page covers installing it.
+
 ---
 
 ## Prerequisites
@@ -10,15 +12,15 @@
 
 ---
 
-## Option 1 — Install from PyPI *(coming in Stage 1)*
+## Option 1 — Install from PyPI *(not yet published)*
 
-Once the first release is published, installation will be:
+A PyPI release is planned. Once it's published, installation will be:
 
 ```bash
 pip install agent-scrutiny
 ```
 
-This is not yet available. Use Option 2 in the meantime.
+This is not yet available — the package has not been published to PyPI. Use Option 2 in the meantime.
 
 ---
 
@@ -63,6 +65,12 @@ pytest
 # Run with coverage report
 pytest --cov=agent_scrutiny --cov-report=term-missing
 ```
+
+> **Shortcut:** you can install the package and all dev dependencies in one editable step instead of the separate requirements files:
+>
+> ```bash
+> pip install -e ".[dev]"
+> ```
 
 ### Development Dependencies
 
