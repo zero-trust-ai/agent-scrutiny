@@ -102,7 +102,7 @@ One of the core principles of Agent Scrutiny is [Explainable Security](../zero-t
 
 With static rules, an explanation might be: *"Blocked because pattern X matched."* Useful, but not deeply informative.
 
-With RAG, the explanation can be: *"Blocked by policy 'HIPAA-PHI-Output-Guard' (last updated 2025-03-15). This policy requires that Protected Health Information not appear in agent output unless the interaction is within an authorized clinical workflow. The current interaction context does not include clinical workflow authorization."*
+With RAG, the explanation can be: *"Blocked by policy 'HIPAA-PHI-Output-Guard' (last updated 2026-03-15). This policy requires that Protected Health Information not appear in agent output unless the interaction is within an authorized clinical workflow. The current interaction context does not include clinical workflow authorization."*
 
 That explanation is actionable. A developer knows exactly which policy fired, when it was last updated, and what context would make the interaction legitimate.
 
@@ -122,7 +122,7 @@ File: policies/hipaa-voice-recordings.md
 title: HIPAA Voice Recording Protection
 threat: data-exfiltration
 severity: critical
-updated: 2025-06-01
+updated: 2026-06-01
 ---
 
 Agent output must not include transcriptions or summaries of protected 

@@ -8,14 +8,14 @@ Agent Scrutiny follows a staged development methodology. Each stage introduces n
 
 ## Timeline Overview
 
-| Stage | Focus | Target | Status |
-|---|---|---|---|
-| **0** | Foundation — threat modeling, architecture, plugin spec | Q1 2025 | **Complete** |
-| **1** | Scrutinizer Core — detectors, policies, plugin foundation | Q1–Q2 2025 | Planned |
-| **2** | MCP Security & full plugin ecosystem | Q2 2025 | Planned |
-| **3** | RAG-powered dynamic policies | Q2–Q3 2025 | Planned |
-| **4** | Multi-agent security & behavioral analysis | Q3 2025 | Planned |
-| **5** | Production hardening & enterprise deployment | Q4 2025 | Planned |
+| Stage | Focus | Status |
+|---|---|---|
+| **0** | Foundation — threat modeling, architecture, plugin spec | **Complete** |
+| **1** | Scrutinizer Core — detectors, policies, plugin foundation | **Complete (Python)** · Rust pending |
+| **2** | MCP Security & full plugin ecosystem | Planned — next |
+| **3** | RAG-powered dynamic policies | Planned |
+| **4** | Multi-agent security & behavioral analysis | Planned |
+| **5** | Production hardening & enterprise deployment | Planned |
 
 ---
 
@@ -45,26 +45,32 @@ Agent Scrutiny follows a staged development methodology. Each stage introduces n
 
 ## Stage 1 — Scrutinizer Core
 
-**Goal:** Build the core evaluation pipeline with prompt injection detection, input/output validation, and basic policy enforcement.
+**Status:** Complete in the Python SDK. The Rust implementation has not yet started.
+
+**Goal:** Build the core evaluation pipeline with prompt-injection detection, input/output validation, and static policy enforcement.
 
 ### What lands in each SDK
 
 | Component | Python | Rust |
 |---|---|---|
-| Scrutinizer class & evaluation loop | ✓ | ✓ |
-| Prompt injection detector | ✓ | ✓ |
-| Input validator | ✓ | ✓ |
-| Output filter (data exfiltration) | ✓ | ✓ |
-| Policy engine (static rules) | ✓ | ✓ |
-| Plugin base class + manager | ✓ | ✓ |
-| Structured logging & alerting | ✓ | ✓ |
+| Scrutinizer class & evaluation loop | ✓ | ⏳ |
+| Prompt injection detector | ✓ | ⏳ |
+| Input validator | ✓ | ⏳ |
+| Output filter (data exfiltration) | ✓ | ⏳ |
+| Policy engine (static rules) | ✓ | ⏳ |
+| Plugin base class + manager | ✓ | ⏳ |
+| Mode (strict / permissive / monitor) | ✓ | ⏳ |
+| Structured logging (structlog) | ✓ | ⏳ |
+
+✓ = implemented · ⏳ = pending (Rust Stage 1 not yet begun)
 
 ### Success Criteria
 
-- Detect common prompt injection patterns with a documented false-positive rate.
-- Plugin base class is stable and ready for Stage 2 expansion.
-- 80%+ test coverage in both SDKs.
-- Working examples and tutorials published.
+- [x] Detect common prompt-injection patterns (Python).
+- [x] Plugin base class stable and ready for Stage 2 expansion.
+- [x] Python test suite: 227 passing (1 skipped), ~97% coverage.
+- [x] Working examples and tutorials published.
+- [ ] Rust SDK implementation of the Stage 1 pipeline.
 
 ---
 
