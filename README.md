@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Early Development](https://img.shields.io/badge/Status-Early%20Development-orange.svg)]()
-[![Stage: 0 - Foundation](https://img.shields.io/badge/Stage-0%20Foundation-yellow.svg)]()
+[![Stage: 2 - MCP Security](https://img.shields.io/badge/Stage-2%20Foundation-yellow.svg)]()
 [![Docs](https://img.shields.io/badge/Docs-agent--scrutiny.github.io-blue.svg)](https://agent-scrutiny.github.io)
 
 ---
@@ -14,7 +14,7 @@
 This is the **project hub** for Agent Scrutiny. It owns all shared documentation, the plugin specification, the threat model, and the architectural decisions that govern both implementation repositories:
 
 | Repository | Purpose |
-|---|---|
+| --- | --- |
 | **agent-scrutiny** *(this repo)* | Project hub — docs, specs, roadmap, shared contracts |
 | [agent-scrutiny-python](https://github.com/zero-trust-ai/agent-scrutiny-python) | Python SDK — reference implementation |
 | [agent-scrutiny-rust](https://github.com/zero-trust-ai/agent-scrutiny-rust) | Rust SDK — production-grade implementation |
@@ -40,6 +40,7 @@ zensical build          # output to site/
 ```
 
 ### Doc Structure at a Glance
+
 
 ```
 docs/
@@ -80,9 +81,9 @@ docs/
 
 | Stage | Focus | Status |
 |---|---|---|
-| 0 | Foundation — threat modeling, architecture, plugin spec | **Current** |
-| 1 | Scrutinizer Core — detectors, policies, plugin foundation | Planned |
-| 2 | MCP Security & full plugin system | Planned |
+| 0 | Foundation — threat modeling, architecture, plugin spec | **Complete** |
+| 1 | Scrutinizer Core — detectors, policies, plugin foundation | **Complete** |
+| 2 | MCP Security & full plugin system | **Current** |
 | 3 | RAG-powered dynamic policies | Planned |
 | 4 | Multi-agent security & behavioral analysis | Planned |
 | 5 | Production hardening | Planned |
