@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Early Development](https://img.shields.io/badge/Status-Early%20Development-orange.svg)]()
-[![Stage: 0 - Foundation](https://img.shields.io/badge/Stage-0%20Foundation-yellow.svg)]()
+[![Stage: 2 - Foundation](https://img.shields.io/badge/Stage-0%20Foundation-yellow.svg)]()
 [![Docs](https://img.shields.io/badge/Docs-agent--scrutiny.github.io-blue.svg)](https://agent-scrutiny.github.io)
 
 ---
