@@ -129,19 +129,13 @@ extensions = [
   "pymdownx.tasklist",
 ]
 
-[project.markdown.extensions.toc]
-permalink = true
-
-[project.markdown.extensions.pymdownx.highlight]
-anchor_linenums = true
-line_range = true
-content_copy = true
-
-[project.markdown.extensions.pymdownx.tabbed]
-alternate = true
-
-[project.markdown.extensions.pymdownx.superfences]
-custom_fences = [
+[project.markdown.config]
+toc_permalink = true
+highlight_anchor_linenums = true
+highlight_line_range = true
+highlight_content_copy = true
+tabbed_alternate = true
+superfences_custom_fences = [
   { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
 ]
 
