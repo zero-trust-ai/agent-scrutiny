@@ -161,5 +161,7 @@ docs/_build/
 # ---------------------------------------------------------------------------
 
 # Local scratch / experiment files
+
 scratch/
 tmp/
+docs/retire-uppercase.sh
