@@ -21,49 +21,7 @@ Every architectural decision traces back to one of these:
 
 ## High-Level Component Map
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                        Agent Interaction                     │
-│          (user → agent, agent → agent, agent → API)          │
-└────────────────────────────┬─────────────────────────────────┘
-                             │
-                             ▼
-┌────────────────────────────────────────────────────────────────┐
-│                   Scrutinizer Evaluation Layer                 │
-│                                                                │
-│   ┌────────────────┐                                           │
-│   │ Input          │  *(Stage 1)*  Sanitize & validate         │
-│   │ Validation     │               all incoming data.          │
-│   └───────┬────────┘                                           │
-│           ▼                                                    │
-│   ┌────────────────┐                                           │
-│   │ Core Threat    │  *(Stage 1)*  Pattern-based detection     │
-│   │ Detection      │               (prompt injection, etc.).   │
-│   └───────┬────────┘                                           │
-│           ▼                                                    │
-│   ┌────────────────────────────────────┐                       │
-│   │ Plugin Evaluation Pipeline         │  *(Stage 1–2)*        │
-│   │  ┌─────────┐ ┌─────────┐ ┌──────┐  │  Each plugin runs     │
-│   │  │Plugin A │ │Plugin B │ │ ...  │  │  in its own isolated  │
-│   │  └─────────┘ └─────────┘ └──────┘  │  security boundary.   │
-│   └───────┬────────────────────────────┘                       │
-│           ▼                                                    │
-│   ┌────────────────┐                                           │
-│   │ Policy         │  *(Stage 1–3)*  Enforce rules. In Stage   │
-│   │ Enforcement    │               3, policies are retrieved   │
-│   └───────┬────────┘               dynamically via RAG.       │
-│           ▼                                                    │
-│   ┌────────────────┐                                           │
-│   │ Security       │  Aggregates all signals into a single     │
-│   │ Verdict        │  verdict with an explanation.             │
-│   └────────────────┘                                           │
-│                                                                │
-│   ┌─────────────────────────────────┐                          │
-│   │ Monitoring & Audit              │  *(Stage 1+)*            │
-│   │ Structured logs · Alerts · Trail│  Runs in parallel;       │
-│   └─────────────────────────────────┘  never bypassed.         │
-└──────────────────────────────────────────────────────────────┘
-```
+![Agent Scrutiny architecture](../assets/images/agent_interaction_diagram.jpg)
 
 ---
 

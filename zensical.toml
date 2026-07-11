@@ -40,71 +40,53 @@ toggle  = { icon = "material/brightness-7", name = "Switch to light mode" }
 # ---------------------------------------------------------------------------
 # Navigation
 # ---------------------------------------------------------------------------
-[[project.nav]]
-"Home" = "index.md"
+nav = [
+  { "Home"                  = "index.md" },
+  { "Getting Started"       = "getting-started.md" },
+  { "Architecture"          = "concepts/architecture.md" },
+  { "Threat Model"          = "threat-model.md" },
+  { "Zero-Trust Principles" = "zero-trust-principles.md" },
+  { "Roadmap"               = "roadmap.md" },
+  { "Security Use Cases"    = "security-use-cases.md" },
+  { "Git Branching"         = "git-branching.md" },
 
-[[project.nav]]
-"Getting Started" = "getting-started.md"
+  # --- Concepts ------------------------------------------------------------
+  { "Concepts" = [
+    { "Overview"             = "concepts/index.md" },
+    { "Prompt Injection"     = "concepts/prompt-injection.md" },
+    { "MCP Security"         = "concepts/mcp-security.md" },
+    { "RAG-Powered Policies" = "concepts/rag-policies.md" },
+    { "Multi-Agent Security" = "concepts/multi-agent-security.md" },
+  ]},
 
-[[project.nav]]
-"Architecture" = "architecture.md"
+  # --- Python SDK ----------------------------------------------------------
+  { "Python SDK" = [
+    { "Overview"              = "python/index.md" },
+    { "Installation"          = "python/installation.md" },
+    { "API Reference"         = "python/api-reference.md" },
+    { "Tutorials"             = "python/tutorials/index.md" },
+    { "Tutorial: Basic Usage" = "python/tutorials/basic-usage.md" },
+    { "Tutorial: Plugin Dev"  = "python/tutorials/plugin-development.md" },
+  ]},
 
-[[project.nav]]
-"Threat Model" = "threat-model.md"
+  # --- Rust SDK ------------------------------------------------------------
+  { "Rust SDK" = [
+    { "Overview"      = "rust/index.md" },
+    { "Installation"  = "rust/installation.md" },
+    { "API Reference" = "rust/api-reference.md" },
+  ]},
 
-[[project.nav]]
-"Zero-Trust Principles" = "zero-trust-principles.md"
+  # --- Plugins -------------------------------------------------------------
+  { "Plugins" = [
+    { "Plugin Ecosystem"     = "plugins/index.md" },
+    { "Plugin Specification" = "plugins/plugin-specification.md" },
+    { "Creating a Plugin"    = "plugins/creating-plugins.md" },
+    { "Official Plugins"     = "plugins/official/index.md" },
+  ]},
 
-[[project.nav]]
-"Roadmap" = "roadmap.md"
-
-[[project.nav]]
-"Security Use Cases" = "security-use-cases.md"
-
-[[project.nav]]
-"Contributing" = "contributing.md"
-
-[[project.nav]]
-"Git Branching" = "git-branching.md"
-
-
-# --- Concepts ---------------------------------------------------------------
-[[project.nav]]
-[project.nav."Concepts"]
-"Overview"                 = "concepts/index.md"
-"Prompt Injection"         = "concepts/prompt-injection.md"
-"MCP Security"             = "concepts/mcp-security.md"
-"RAG-Powered Policies"     = "concepts/rag-policies.md"
-"Multi-Agent Security"     = "concepts/multi-agent-security.md"
-
-# --- Python SDK -------------------------------------------------------------
-[[project.nav]]
-[project.nav."Python SDK"]
-"Overview"                 = "python/index.md"
-"Installation"             = "python/installation.md"
-"API Reference"            = "python/api-reference.md"
-"Tutorials"                = "python/tutorials/index.md"
-"Tutorial: Basic Usage"    = "python/tutorials/basic-usage.md"
-"Tutorial: Plugin Dev"     = "python/tutorials/plugin-development.md"
-
-# --- Rust SDK ---------------------------------------------------------------
-[[project.nav]]
-[project.nav."Rust SDK"]
-"Overview"                 = "rust/index.md"
-"Installation"             = "rust/installation.md"
-"API Reference"            = "rust/api-reference.md"
-
-# --- Plugins ----------------------------------------------------------------
-[[project.nav]]
-[project.nav."Plugins"]
-"Plugin Ecosystem"         = "plugins/index.md"
-"Plugin Specification"     = "plugins/plugin-specification.md"
-"Creating a Plugin"        = "plugins/creating-plugins.md"
-"Official Plugins"         = "plugins/official/index.md"
-
-# --- Contributing -----------------------------------------------------------
-[[project.nav]]
-"Contributing" = "contributing.md"
+  # --- Contributing --------------------------------------------------------
+  { "Contributing" = "contributing.md" },
+]
 
 # ---------------------------------------------------------------------------
 # Markdown extensions
