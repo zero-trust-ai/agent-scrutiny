@@ -25,42 +25,7 @@ Every architectural decision traces back to one of these:
 This is the *structural* view — what the pieces are. The order in which an
 interaction flows through them is described in [The Evaluation Pipeline](#the-evaluation-pipeline).
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                       Agent Interaction                       │
-│          (user → agent, agent → agent, agent → API)           │
-└────────────────────────────┬─────────────────────────────────┘
-                             │
-                             ▼
-┌──────────────────────────────────────────────────────────────┐
-│                     Scrutinizer  (core.py)                    │
-│                                                               │
-│   ┌───────────────────────────────────────────────────────┐  │
-│   │ Plugin Layer                                           │  │
-│   │   built-in detectors           third-party plugins     │  │
-│   │   ┌──────────────────┐         ┌──────────┐            │  │
-│   │   │ PromptInjection  │         │ Plugin A │            │  │
-│   │   │ InputValidator   │  …      │ Plugin B │   …        │  │
-│   │   │ DataExfiltration │         │ Plugin C │            │  │
-│   │   └──────────────────┘         └──────────┘            │  │
-│   │   all evaluate in parallel; each is an isolated        │  │
-│   │   security boundary                                    │  │
-│   └───────────────────────────────────────────────────────┘  │
-│                             │                                 │
-│                             ▼                                 │
-│   ┌───────────────┐   ┌───────────────┐   ┌───────────────┐   │
-│   │ Aggregation   │ → │ Policy Engine │ → │ Mode          │   │
-│   │ most-severe   │   │ (transform)   │   │ strict/perm/  │   │
-│   │ wins          │   │               │   │ monitor       │   │
-│   └───────────────┘   └───────────────┘   └───────────────┘   │
-└────────────────────────────┬─────────────────────────────────┘
-                             │
-                             ▼
-                      Security Verdict
-              (allow / warn / block, + explanation)
-
-   Monitoring & Audit runs alongside every stage and is never bypassed.
-```
+![High Level Architecture](/docs/assets/images/docs_architecture_md.jpg)
 
 ---
 

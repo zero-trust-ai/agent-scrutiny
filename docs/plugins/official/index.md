@@ -4,7 +4,7 @@ Official plugins are maintained by the Agent Scrutiny team. They are the referen
 
 > **Stage note.** The plugin *system* (base class, manager, registration) is
 > available now in Stage 1, so you can build and register your own plugins today
-> — see [Plugin Development](../../python/tutorials/plugin-development.md). The
+> — see [Plugin Development](../plugin-development.md). The
 > official plugins below, the `agent_scrutiny.plugins.official` import path, and
 > the registry are **Stage 2**. The usage shown here reflects the real
 > registration API so it will be correct when they ship.

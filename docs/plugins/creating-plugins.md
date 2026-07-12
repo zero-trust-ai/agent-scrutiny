@@ -1,6 +1,6 @@
 # Creating a Plugin
 
-This page is a quick reference for the plugin creation workflow. For a full step-by-step tutorial with code, see [Tutorial: Plugin Development](../python/tutorials/plugin-development.md).
+This page is a quick reference for the plugin creation workflow. For a full step-by-step tutorial with code, see [Tutorial: Plugin Development](plugin-development.md).
 
 The plugin system — the `Plugin` base class, the manager, and constructor-based
 registration — is implemented and usable **today** (Stage 1). The registry,
@@ -11,7 +11,7 @@ test suite arrive in **Stage 2**; those steps are marked below.
 
 ## The Short Version
 
-1. **Read** the [Plugin Specification](plugin-specification.md) — understand the contract before you write code.
+1. **Read** the [Plugin Specification](../python/tutorials/) — understand the contract before you write code.
 2. **Discuss** your idea — open a discussion in the [agent-scrutiny hub](https://github.com/zero-trust-ai/agent-scrutiny/discussions) with the `plugin-proposal` label. This lets the community give feedback early.
 3. **Implement** — subclass `Plugin`, declare the three identity properties (`name`, `version`, `description`), and implement the async `evaluate(interaction, context)` coroutine. Return a `PluginVerdict` via the `self.allow()` / `self.warn()` / `self.block()` helpers. Choose your category (threat detector, context analyzer, protocol handler, or policy engine).
 4. **Test** — write pytest tests covering the happy path, each detection rule, and edge cases (empty input, missing context). The formal conformance test suite lands in Stage 2.
@@ -84,7 +84,7 @@ Before submitting:
 | Resource | What it covers |
 |---|---|
 | [Plugin Specification](plugin-specification.md) | The formal contract — read this first |
-| [Tutorial: Plugin Development](../python/tutorials/plugin-development.md) | Full Python walkthrough with code |
+| [Tutorial: Plugin Development](plugin-development.md) | Full Python walkthrough with code |
 | [Official Plugins](official/index.md) | See how the project's own plugins are structured |
 | [Architecture — Plugin System](../architecture.md) | How plugins fit into the evaluation pipeline |
-| [Contributing — Plugin Section](../contributing.md) | Submission process and review expectations |
+| [Contributing — Plugin Section](../../contributing.md) | Submission process and review expectations |

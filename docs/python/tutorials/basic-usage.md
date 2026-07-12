@@ -264,6 +264,6 @@ asyncio.run(main())
 
 ## Next Steps
 
-- [Plugin Development](plugin-development.md) — build a custom detector from scratch.
+- [Plugin Development](../../plugins/plugin-development.md) — build a custom detector from scratch.
 - [Architecture](../../architecture.md) — how the evaluation pipeline fits together.
 - [API Reference](../api.md) — the full surface for the Scrutinizer, models, detectors, and policies.

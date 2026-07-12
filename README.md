@@ -100,7 +100,8 @@ Contributions are welcome across all three repositories. Whether you're improvin
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+Code in this repository is licensed under the MIT License (see LICENSE).
+Documentation, diagrams, and written content in docs/ are licensed under CC BY 4.0 .
 
 ---
 

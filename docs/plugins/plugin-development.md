@@ -412,6 +412,6 @@ compatibility:
 
 ## Next Steps
 
-- Read the full [Plugin Specification](../../plugins/plugin-specification.md) for the verdict model, aggregation rules, and isolation guarantees.
+- Read the full [Plugin Specification](plugin-specification.md) for the verdict model, aggregation rules, and isolation guarantees.
 - See the [Official Plugins](../../plugins/official/index.md) page for how the project's own plugins are structured.
 - To contribute your plugin, follow the process in [Contributing](../../contributing.md).

@@ -1,0 +1,53 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Robert Fischer, Zero Trust AI
+
+SCOPE
+-----
+This license applies to the documentation, prose, diagrams, illustrations,
+specifications, presentation materials, and other non-software creative content
+in this repository -- specifically, everything under `docs/`, plus `README.md`
+and `CONTRIBUTING.md`.
+
+It does NOT apply to the source code, configuration, or test suites in this
+repository, which are licensed under the MIT License. See `LICENSE`.
+
+Where a file contains both (for example, a documentation page with embedded code
+samples), the prose is CC BY 4.0 and the code samples are MIT.
+
+SUMMARY
+-------
+You are free to:
+
+  * Share -- copy and redistribute the material in any medium or format
+  * Adapt -- remix, transform, and build upon the material for any purpose,
+    including commercially
+
+Under the following terms:
+
+  * Attribution -- You must give appropriate credit, provide a link to the
+    license, and indicate if changes were made. You may do so in any reasonable
+    manner, but not in any way that suggests the licensor endorses you or your
+    use.
+  * No additional restrictions -- You may not apply legal terms or technological
+    measures that legally restrict others from doing anything the license
+    permits.
+
+FULL LEGAL CODE
+---------------
+The complete, authoritative text of the CC BY 4.0 license is available at:
+
+  https://creativecommons.org/licenses/by/4.0/legalcode
+
+The summary above is a convenience, not a substitute for the legal code. By
+using this content you agree to be bound by the terms of the full license.
+
+HOW TO ATTRIBUTE
+----------------
+A suitable attribution for reuse of this content is:
+
+  "Agent Scrutiny" by Robert Fischer (Zero Trust AI), licensed under CC BY 4.0.
+  Source: https://github.com/zero-trust-ai/agent-scrutiny
+
+For academic or published work, please use the citation in `CITATION.cff` (or
+the "How to cite" section of the README).

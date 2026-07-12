@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "Agent Scrutiny: A Zero-Trust Evaluation Framework for AI Agents"
+message: >-
+  If you use this software or its documentation in your work,
+  please cite it using the metadata below.
+type: software
+authors:
+  - family-names: Fischer
+    given-names: Robert
+    affiliation: "Zero Trust AI"
+    email: robert@fischer3.org
+abstract: >-
+  Agent Scrutiny is an open, plugin-based framework that applies
+  zero-trust principles to the evaluation of AI agent interactions,
+  detecting threats including prompt injection, data exfiltration,
+  and malformed input across agentic communication protocols.
+repository-code: "https://github.com/zero-trust-ai/agent-scrutiny"
+url: "https://zero-trust.ai"
+license: MIT
+version: "0.1.0"
+date-released: "2026-01-01"
+keywords:
+  - agentic AI security
+  - zero trust
+  - prompt injection
+  - AI agents
+  - MCP
+  - LLM security

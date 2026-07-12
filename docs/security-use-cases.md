@@ -357,7 +357,7 @@ SecurityVerdict {
 
 ## What's Not Covered Here
 
-This document focuses on the eight threats in the current [Threat Model](threat-model.md). As the threat model expands — particularly in Stage 2 (MCP tampering in depth) and Stage 3 (RAG-specific attacks) — new use cases will be added to match. If you've encountered a real-world scenario you think should be documented here, see the [contribution guidelines](../CONTRIBUTING.md).
+This document focuses on the eight threats in the current [Threat Model](threat-model.md). As the threat model expands — particularly in Stage 2 (MCP tampering in depth) and Stage 3 (RAG-specific attacks) — new use cases will be added to match. If you've encountered a real-world scenario you think should be documented here, see the [contribution guidelines](../contributing.md).
 
 ---
 
